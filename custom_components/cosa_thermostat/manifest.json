@@ -1,0 +1,13 @@
+{
+  "domain": "cosa_thermostat",
+  "name": "Cosa Smart Thermostat",
+  "codeowners": ["@alte-dev"],
+  "config_flow": true,
+  "dependencies": ["http", "frontend"],
+  "documentation": "https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

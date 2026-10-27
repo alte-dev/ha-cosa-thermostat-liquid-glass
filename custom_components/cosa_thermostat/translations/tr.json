@@ -1,0 +1,102 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Cosa Akıllı Termostat Girişi",
+        "description": "Cosa mobil uygulamasında kullandığınız e-posta ve şifrenizi girin.",
+        "data": {
+          "email": "E-posta Adresi",
+          "password": "Şifre"
+        }
+      },
+      "select_device": {
+        "title": "Cihaz Seçimi",
+        "description": "Yönetmek istediğiniz Cosa termostat cihazını seçin.",
+        "data": {
+          "device_id": "Cihaz"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cosa Kiwi bulut sunucusuna bağlanılamadı. İnternet bağlantınızı kontrol edin.",
+      "invalid_auth": "Geçersiz e-posta veya şifre. Lütfen tekrar deneyin.",
+      "no_devices": "Bu hesap altında herhangi bir Cosa cihazı bulunamadı.",
+      "unknown": "Beklenmeyen bir hata oluştu."
+    },
+    "abort": {
+      "already_configured": "Bu Cosa termostat cihazı zaten eklenmiş."
+    }
+  },
+  "entity": {
+    "climate": {
+      "cosa_thermostat": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "home": "Ev",
+              "sleep": "Uyku",
+              "away": "Dışarı",
+              "custom": "Kullanıcı",
+              "auto": "Otomatik Kontrol",
+              "schedule": "Haftalık Program"
+            }
+          }
+        }
+      },
+      "cosa_air_conditioner": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "remote": "Kumanda (IR)",
+              "home": "Ev",
+              "away": "Dışarı",
+              "sleep": "Uyku",
+              "custom": "Kullanıcı",
+              "auto": "Otomatik Kontrol",
+              "schedule": "Haftalık Program"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "combi_state": {
+        "name": "Kombi Durumu",
+        "state": {
+          "heating": "Isıtıyor",
+          "idle": "Beklemede",
+          "off": "Kapalı",
+          "unknown": "Bilinmiyor"
+        }
+      },
+      "ac_state": {
+        "name": "Klima Durumu",
+        "state": {
+          "cooling": "Soğutuyor",
+          "heating": "Isıtıyor",
+          "dry": "Nem Alma",
+          "ventilation": "Fan",
+          "off": "Kapalı",
+          "unknown": "Bilinmiyor"
+        }
+      },
+      "current_temperature": {
+        "name": "Mevcut Sıcaklık"
+      },
+      "target_temperature": {
+        "name": "Hedef Sıcaklık"
+      },
+      "humidity": {
+        "name": "Nem Oranı"
+      },
+      "operation_mode": {
+        "name": "Çalışma Modu",
+        "state": {
+          "heating": "Isıtma (Kombi)",
+          "cooling": "Soğutma (Klima)",
+          "remote": "Kumanda Modu"
+        }
+      }
+    }
+  }
+}

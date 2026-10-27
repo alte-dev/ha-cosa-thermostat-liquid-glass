@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosa Smart Thermostat - Liquid Glass Interface</title>
+  <meta name="description" content="Home Assistant için Cosa Akıllı Termostat ve Klima Entegrasyonu Liquid Glass Arayüzü">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+  <!-- Load the Custom Lovelace Card Component -->
+  <script type="module" src="www/cosa-thermostat-card.js"></script>
+</head>
+<body>
+  <!-- Ambient floating lighting background -->
+  <div class="bg-ambient-layer">
+    <div class="orb orb-1" id="ambientOrb1"></div>
+    <div class="orb orb-2" id="ambientOrb2"></div>
+  </div>
+
+  <div class="app-wrapper">
+    <!-- Top Navigation -->
+    <header class="top-nav">
+      <div class="brand-section">
+        <div class="brand-icon-box">
+          <img src="images/icon.png" width="40" height="40" style="border-radius: 12px; display: block;" alt="Liquid Glass Icon">
+        </div>
+        <div class="brand-text">
+          <h1>Cosa Smart Climate</h1>
+          <p>Home Assistant Integration & Lovelace Card</p>
+        </div>
+        <div class="badge-liquid-glass">
+          <span class="badge-pulse"></span>
+          <span>Liquid Glass</span>
+        </div>
+      </div>
+
+      <nav class="nav-actions">
+        <button class="nav-btn" id="navResetBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M3 21v-5h5"/>
+          </svg>
+          Varsayılana Dön
+        </button>
+        <button class="nav-btn primary" id="navExportBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          Lovelace YAML Kopyala
+        </button>
+      </nav>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="studio-grid">
+      <!-- Left Column: Interactive Device Chassis -->
+      <section class="preview-column">
+        <div class="device-chassis" id="deviceChassis">
+          <div class="device-speaker-notch"></div>
+          <div class="device-screen">
+            <!-- Actual Custom Element Card -->
+            <cosa-thermostat-card id="thermostatCard"></cosa-thermostat-card>
+          </div>
+        </div>
+        <p class="preview-subtext">
+          <span>✨</span> Canlı etkileşimli kart önizlemesi. Kadranı çevirip sıcaklığı ayarlayabilirsiniz.
+        </p>
+      </section>
+
+      <!-- Right Column: Interactive Studio & Tabs -->
+      <section class="studio-column">
+        <div class="glass-panel">
+          <div class="panel-header">
+            <div class="panel-header-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+              <span>Etkileşimli Stüdyo & Test Merkezi</span>
+            </div>
+            <span class="panel-badge">Canlı Simülasyon</span>
+          </div>
+
+          <!-- Studio Tabs Navigation -->
+          <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="tab-simulator">
+              <span>🎛️</span> Simülatör
+            </button>
+            <button class="tab-btn" data-tab="tab-customizer">
+              <span>🎨</span> Cam Efekti
+            </button>
+            <button class="tab-btn" data-tab="tab-yaml">
+              <span>📋</span> HA Lovelace YAML
+            </button>
+            <button class="tab-btn" data-tab="tab-guide">
+              <span>🚀</span> Kurulum Rehberi
+            </button>
+          </div>
+
+          <!-- TAB 1: Simulator Controls -->
+          <div class="tab-content active" id="tab-simulator">
+            <div class="control-row">
+              <div class="control-info">
+                <span class="control-label">Oda Sıcaklığı</span>
+                <span class="control-desc">Sensörden gelen mevcut ortam sıcaklığı simülasyonu</span>
+              </div>
+              <div class="slider-wrapper">
+                <input type="range" id="simCurrentTemp" min="15" max="30" step="0.1" value="22.4">
+                <span class="slider-value-pill" id="simCurrentTempVal">22.4°C</span>
+              </div>
+            </div>
+
+            <div class="control-row">
+              <div class="control-info">
+                <span class="control-label">Ortam Nemi</span>
+                <span class="control-desc">Odadaki bağıl nem oranı</span>
+              </div>
+              <div class="slider-wrapper">
+                <input type="range" id="simHumidity" min="20" max="85" step="1" value="48">
+                <span class="slider-value-pill" id="simHumidityVal">%48</span>
+              </div>
+            </div>
+
+            <div class="control-row">
+              <div class="control-info">
+                <span class="control-label">Kombi Ateşleme Durumu</span>
+                <span class="control-desc">Kombi alev sensörü devrede / beklemede</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="simCombiFlame" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <div class="control-row">
+              <div class="control-info">
+                <span class="control-label">Cihaz Gücü</span>
+                <span class="control-desc">Termostatı açık veya kapalı (standby) konuma getirin</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="simPower" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <div class="control-row">
+              <div class="control-info">
+                <span class="control-label">Klima (Soğutma) Seçeneği</span>
+                <span class="control-desc">Klima modunu aç / kapat (Kombiniz varsa kapalı tutun)</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="simShowAc">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <div class="control-row">
+              <div class="control-info">
+                <span class="control-label">Hızlı Önayar Seçimi</span>
+                <span class="control-desc">Kullanıcı modları arasında hızlı geçiş</span>
+              </div>
+              <div style="display:flex; gap:6px;">
+                <button class="nav-btn" onclick="window.simulator.setPreset('home')">Ev (23°)</button>
+                <button class="nav-btn" onclick="window.simulator.setPreset('away')">Dışarı (19°)</button>
+                <button class="nav-btn" onclick="window.simulator.setPreset('sleep')">Uyku (20.5°)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: Glass Customizer -->
+          <div class="tab-content" id="tab-customizer">
+            <div class="control-row">
+              <div class="control-info">
+                <span class="control-label">Bulanıklık Derinliği (Glass Blur)</span>
+                <span class="control-desc">Liquid Glass buğulu cam arka plan filtre yoğunluğu</span>
+              </div>
+              <div class="slider-wrapper">
+                <input type="range" id="glassBlurInput" min="12" max="64" step="2" value="36">
+                <span class="slider-value-pill" id="glassBlurVal">36px</span>
+              </div>
+            </div>
+
+            <div class="control-row">
+              <div class="control-info">
+                <span class="control-label">Cam Yüzey Saydamlığı</span>
+                <span class="control-desc">Yüzeyin ışık geçirgenliği ve parlaklık dengesi</span>
+              </div>
+              <div class="slider-wrapper">
+                <input type="range" id="glassOpacityInput" min="4" max="25" step="1" value="12">
+                <span class="slider-value-pill" id="glassOpacityVal">%12</span>
+              </div>
+            </div>
+
+            <div class="control-row">
+              <div class="control-info">
+                <span class="control-label">Termal Ortam Işıması (Dynamic Luminescence)</span>
+                <span class="control-desc">Isınma ve soğutma durumuna göre değişen ışıma halesi</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="ambientGlowToggle" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <div class="control-row">
+              <div class="control-info">
+                <span class="control-label">Prizmatik Kenar Yansıması</span>
+                <span class="control-desc">Cam kenarlarında kristal prizma parlaklığı</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="specularToggle" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- TAB 3: HA Lovelace YAML -->
+          <div class="tab-content" id="tab-yaml">
+            <p style="font-size: 13px; color: var(--text-secondary);">
+              Aşağıdaki yapılandırmayı Home Assistant panonuzda (Lovelace Dashboard) bir "Manuel Kart" ekleyerek yapıştırabilirsiniz:
+            </p>
+
+            <div class="code-container">
+              <div class="code-header">
+                <div class="code-dots">
+                  <span class="code-dot dot-red"></span>
+                  <span class="code-dot dot-yellow"></span>
+                  <span class="code-dot dot-green"></span>
+                </div>
+                <button class="copy-btn" id="copyYamlBtn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  <span id="copyYamlText">Kodu Kopyala</span>
+                </button>
+              </div>
+              <pre><code id="yamlCodeBlock"># Kombi Termostatı için (Klima yoksa varsayılan)
+type: custom:cosa-thermostat-card
+entity: climate.cosa_thermostat
+name: Salon Kombi Termostatı
+temp_step: 0.5
+show_ac: false  # Klima seçeneğini gizler (Varsayılan: false)
+show_ambient_glow: true
+
+# Eğer klimalı Cosa modeliniz varsa:
+# show_ac: true
+# ac_entity: climate.cosa_thermostat_ac</code></pre>
+            </div>
+          </div>
+
+          <!-- TAB 4: Installation Guide -->
+          <div class="tab-content" id="tab-guide">
+            <div style="display:flex; flex-direction:column; gap: 14px; font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+              <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 12px; border-left: 3px solid #ff5e3a;">
+                <strong style="color:#ffffff;">1. Entegrasyon Kurulumu:</strong><br>
+                <code>custom_components/cosa_thermostat</code> klasörünü Home Assistant'ın <code>custom_components/</code> dizinine kopyalayın ve Home Assistant'ı yeniden başlatın. Ayarlar > Cihazlar & Hizmetler'den Cosa'yı ekleyin.
+              </div>
+              <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 12px; border-left: 3px solid #00c6ff;">
+                <strong style="color:#ffffff;">2. Kart Dosyası (Otomatik veya Manuel):</strong><br>
+                Bu entegrasyon kartı dahili olarak sunar (<code>/cosa_thermostat/cosa-thermostat-card.js</code>). Manuel kullanım için <code>www/cosa-thermostat-card.js</code> dosyasını Home Assistant <code>config/www/</code> altına kopyalayıp Kaynaklar'a ekleyebilirsiniz.
+              </div>
+              <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 12px; border-left: 3px solid #10b981;">
+                <strong style="color:#ffffff;">3. Lovelace Panosuna Ekleme:</strong><br>
+                Panonuzda "Kart Ekle" > "Manuel" seçip YAML kodunu yapıştırmanız yeterlidir.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Highlights feature cards -->
+        <div class="feature-cards">
+          <div class="feature-card">
+            <span class="feature-icon-badge">💎</span>
+            <h3 class="feature-title">Liquid Glass</h3>
+            <p class="feature-desc">Derin optik bulanıklık, prizmatik kenar kırılımları ve yüksek çözünürlüklü dokular.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon-badge">🔥❄️</span>
+            <h3 class="feature-title">Kombi & Klima Hibrit</h3>
+            <p class="feature-desc">Hem kombi ısıtmasını hem de IR klima soğutmasını tek bir şık arayüzde birleştirir.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon-badge">🎯</span>
+            <h3 class="feature-title">Ultra Hassas Kadran</h3>
+            <p class="feature-desc">Dokunmatik ve fare sürüklenebilir 240° dairesel kontrol, 0.1°C ve 0.5°C mikroadım desteği.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon-badge">⚡</span>
+            <h3 class="feature-title">Anlık İyimser Yanıt</h3>
+            <p class="feature-desc">Bulut sorgusunu beklemeden kullanıcı hareketlerine anında akıcı görsel yanıt üretir.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Cosa Smart Thermostat • Home Assistant Integration & Liquid Glass UI</p>
+      <p>MIT Lisansı ile korunmaktadır • Tamamen baştan tasarlanmış topluluk sürümü</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

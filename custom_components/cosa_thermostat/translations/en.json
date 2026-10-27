@@ -1,0 +1,102 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Cosa Smart Thermostat Login",
+        "description": "Enter your Cosa mobile app credentials to connect.",
+        "data": {
+          "email": "Email Address",
+          "password": "Password"
+        }
+      },
+      "select_device": {
+        "title": "Select Cosa Device",
+        "description": "Choose the Cosa thermostat endpoint you want to manage.",
+        "data": {
+          "device_id": "Device"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to Cosa Kiwi cloud. Please check your internet connection.",
+      "invalid_auth": "Invalid email or password. Please try again.",
+      "no_devices": "No Cosa devices found under this account.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This Cosa thermostat is already configured."
+    }
+  },
+  "entity": {
+    "climate": {
+      "cosa_thermostat": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "home": "Home",
+              "sleep": "Sleep",
+              "away": "Away",
+              "custom": "Custom",
+              "auto": "Auto Control",
+              "schedule": "Weekly Schedule"
+            }
+          }
+        }
+      },
+      "cosa_air_conditioner": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "remote": "Remote IR",
+              "home": "Home",
+              "away": "Away",
+              "sleep": "Sleep",
+              "custom": "Custom",
+              "auto": "Auto Control",
+              "schedule": "Weekly Schedule"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "combi_state": {
+        "name": "Combi State",
+        "state": {
+          "heating": "Heating",
+          "idle": "Idle",
+          "off": "Off",
+          "unknown": "Unknown"
+        }
+      },
+      "ac_state": {
+        "name": "AC State",
+        "state": {
+          "cooling": "Cooling",
+          "heating": "Heating",
+          "dry": "Dehumidify",
+          "ventilation": "Fan Only",
+          "off": "Off",
+          "unknown": "Unknown"
+        }
+      },
+      "current_temperature": {
+        "name": "Current Temperature"
+      },
+      "target_temperature": {
+        "name": "Target Temperature"
+      },
+      "humidity": {
+        "name": "Humidity"
+      },
+      "operation_mode": {
+        "name": "Operation Mode",
+        "state": {
+          "heating": "Heating (Combi)",
+          "cooling": "Cooling (AC)",
+          "remote": "Remote Control"
+        }
+      }
+    }
+  }
+}

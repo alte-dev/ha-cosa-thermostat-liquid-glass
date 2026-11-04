@@ -4,7 +4,7 @@ import { cardStyles } from './styles';
 import { CosaCardConfig, HomeAssistant } from './types';
 import './editor';
 
-const CARD_VERSION = "1.1.0";
+const CARD_VERSION = "1.1.1";
 console.info(
   `%c COSA-THERMOSTAT-CARD %c v${CARD_VERSION} (Liquid Glass) `,
   'color: #ffffff; background: linear-gradient(135deg, #ff5e3a, #ff2a6d); font-weight: bold; border-radius: 4px 0 0 4px; padding: 3px 6px;',

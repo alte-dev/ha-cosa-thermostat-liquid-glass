@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.1] - 2026-11-04
+
+### 🛠️ Fixed / Düzeltilenler
+- **Custom Element Registration Guards:**
+  - Added guards before customElements.define to prevent registry collisions.
+  - Olası çakışmaları önlemek için customElements.define öncesine koruma eklendi.
+- **Self-Healing Lovelace Rebuild:**
+  - Enhanced multi-stage ll-rebuild triggers (100ms and 500ms) to ensure seamless rendering on slow connections or page refresh.
+  - Sayfa yenilemelerinde veya yavaş bağlantılarda kartın anında yüklenmesi için çok kademeli ll-rebuild mekanizması eklendi.
+- **Release Asset Synchronization:**
+  - Standardized automated release build assets matching the tagged git source exactly.
+  - Tag kaynak kodu ile release asset uyumluluğu sağlandı.
+
+---
+
 ## [1.1.0] - 2026-11-04
 
 ### 🌟 Changed / Değişenler

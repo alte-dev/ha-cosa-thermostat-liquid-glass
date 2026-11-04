@@ -101,7 +101,7 @@ async def async_setup(hass: HomeAssistant, config: dict[str, Any]) -> bool:
                 )
             
             # Automatically load the card in the frontend so it appears in Topluluk Kartları!
-            card_url = f"{FRONTEND_URL_BASE}/cosa-thermostat-card.js?v=1.0.8"
+            card_url = f"{FRONTEND_URL_BASE}/cosa-thermostat-card.js?v=1.1.0"
             try:
                 from homeassistant.components import frontend
                 frontend.add_extra_js_url(hass, card_url)

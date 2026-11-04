@@ -72,5 +72,5 @@ AC_PRESET_MODES = [AC_PRESET_REMOTE] + AC_THERMOSTAT_PRESETS + AC_SCHEDULING_PRE
 AC_SETTINGS_READ_ONLY_KEYS = ("keys", "acInfo", "acDeviceType")
 
 # Frontend Lovelace Card static resource URL
-FRONTEND_URL_BASE = "/cosa_thermostat"
+FRONTEND_URL_BASE = "/local"
 FRONTEND_CARD_FILE = "cosa-thermostat-card.js"

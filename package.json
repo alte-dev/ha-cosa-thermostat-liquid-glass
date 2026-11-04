@@ -1,6 +1,6 @@
 {
   "name": "cosa-thermostat-card",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Liquid glass Thermostat card for Home Assistant Lovelace (Cosa Smart Climate).",
   "keywords": [
     "home-assistant",

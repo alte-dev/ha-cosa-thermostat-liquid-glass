@@ -147,6 +147,15 @@ The build command outputs the minified bundle to `dist/` and automatically synch
 
 ---
 
+## 📜 Changelog & Releases
+
+See the complete [CHANGELOG.md](CHANGELOG.md) for detailed release history.
+
+* **[v1.1.0](https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/releases/tag/v1.1.0) (2026-11-04):** Restructured into a dedicated HACS Lovelace plugin card, decoupled backend integration to `integration-archive` branch, added MIT copyright attribution, streamlined CI/build.
+* **[v1.0.0](https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/releases/tag/v1.0.0) (2026-10-27):** Initial public release with full liquid glassmorphism, dynamic thermal aura, and light/dark theme adaptation.
+
+---
+
 ## ⚖️ License & Attribution
 
 - Licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.

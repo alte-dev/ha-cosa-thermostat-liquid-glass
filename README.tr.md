@@ -145,6 +145,15 @@ npm run build
 
 ---
 
+## 📜 Sürüm Geçmişi & Değişiklikler (Changelog)
+
+Tüm sürümler ve detaylı sürüm geçmişi için [CHANGELOG.md](CHANGELOG.md) dosyasına göz atabilirsiniz.
+
+* **[v1.1.0](https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/releases/tag/v1.1.0) (2026-11-04):** HACS Lovelace eklentisi (plugin) yapısına geçildi, backend entegrasyonu `integration-archive` dalına arşivlendi, MIT telif atfı eklendi, CI ve derleme süreci optimize edildi.
+* **[v1.0.0](https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/releases/tag/v1.0.0) (2026-10-27):** İlk genel yayın; buğulu sıvı cam efekti, dinamik termal arka plan ışıması ve otomatik açık/koyu tema uyumu eklendi.
+
+---
+
 ## ⚖️ Lisans & Atıf
 
 - Bu proje **MIT Lisansı** ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına göz atabilirsiniz.

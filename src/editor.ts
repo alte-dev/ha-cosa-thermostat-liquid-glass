@@ -175,7 +175,9 @@ export class CosaThermostatCardEditor extends LitElement {
 }
 
 try {
-  customElements.define('cosa-thermostat-card-editor', CosaThermostatCardEditor);
-} catch (_) {
-  // Ignored if already defined in scoped-custom-element-registry
+  if (!customElements.get('cosa-thermostat-card-editor')) {
+    customElements.define('cosa-thermostat-card-editor', CosaThermostatCardEditor);
+  }
+} catch (e) {
+  console.warn('CosaThermostatCardEditor registration note:', e);
 }

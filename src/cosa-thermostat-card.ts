@@ -4,7 +4,7 @@ import { cardStyles } from './styles';
 import { CosaCardConfig, HomeAssistant } from './types';
 import './editor';
 
-const CARD_VERSION = "1.0.8";
+const CARD_VERSION = "1.1.0";
 console.info(
   `%c COSA-THERMOSTAT-CARD %c v${CARD_VERSION} (Liquid Glass) `,
   'color: #ffffff; background: linear-gradient(135deg, #ff5e3a, #ff2a6d); font-weight: bold; border-radius: 4px 0 0 4px; padding: 3px 6px;',
@@ -615,16 +615,21 @@ if (!window.customCards.some(card => card.type === 'cosa-thermostat-card')) {
 }
 
 try {
-  customElements.define('cosa-thermostat-card', CosaThermostatCard);
-} catch (_) {
-  // Ignored if already defined in scoped-custom-element-registry
+  if (!customElements.get('cosa-thermostat-card')) {
+    customElements.define('cosa-thermostat-card', CosaThermostatCard);
+  }
+} catch (e) {
+  console.warn('CosaThermostatCard registration note:', e);
 }
 
 // Self-healing: Notify Lovelace to rebuild in case the DOM rendered before module load
 window.dispatchEvent(new CustomEvent('ll-rebuild', { composed: true, bubbles: true }));
 setTimeout(() => {
   window.dispatchEvent(new CustomEvent('ll-rebuild', { composed: true, bubbles: true }));
-}, 200);
+}, 100);
+setTimeout(() => {
+  window.dispatchEvent(new CustomEvent('ll-rebuild', { composed: true, bubbles: true }));
+}, 500);
 
 
 

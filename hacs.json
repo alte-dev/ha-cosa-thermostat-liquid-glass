@@ -1,6 +1,5 @@
 {
-  "name": "Cosa Smart Thermostat (Liquid Glass)",
-  "render_readme": true,
-  "content_in_root": false,
-  "homeassistant": "2024.2.0"
+  "name": "Cosa Thermostat Liquid Glass Card",
+  "filename": "cosa-thermostat-card.js",
+  "render_readme": true
 }

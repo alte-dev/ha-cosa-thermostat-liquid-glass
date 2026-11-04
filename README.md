@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/releases"><img src="https://img.shields.io/github/v/release/alte-dev/ha-cosa-thermostat-liquid-glass?style=for-the-badge&color=007ec6" alt="Release"></a>
-  <a href="https://github.com/hacs/default"><img src="https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge" alt="HACS"></a>
+  <a href="https://github.com/hacs/default"><img src="https://img.shields.io/badge/HACS-Plugin-41BDF5.svg?style=for-the-badge" alt="HACS"></a>
   <a href="https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass"><img src="https://img.shields.io/badge/UI-Liquid_Glass-ff2a6d.svg?style=for-the-badge" alt="UI"></a>
   <a href="https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/blob/main/LICENSE"><img src="https://img.shields.io/github/license/alte-dev/ha-cosa-thermostat-liquid-glass?style=for-the-badge" alt="License"></a>
 </p>
@@ -16,7 +16,9 @@
   <a href="README.tr.md">Türkçe</a>
 </p>
 
-A completely rebuilt, modern custom integration and futuristic **Liquid Glass Lovelace Card** for **Cosa Smart Thermostats** (Combi Boiler & Air Conditioner) in Home Assistant. Built with **TypeScript**, **Lit**, and **Vite**.
+A modern, futuristic **Liquid Glass Lovelace Card** for **Cosa Smart Thermostats** (Combi Boiler & Air Conditioner) and Home Assistant climate entities. Built with **TypeScript**, **Lit**, and **Vite**.
+
+Designed to work seamlessly with the [Aykut Vurmaz Cosa Integration](https://github.com/aykutvr/smartcosa-home-assistant-integration) or any generic Home Assistant climate entity.
 
 ---
 
@@ -52,32 +54,35 @@ The Liquid Glass card automatically detects your Home Assistant dashboard theme 
 - ⚡ **Optimistic UI:** Instantaneous tactile feedback without waiting for cloud polling round-trips.
 - 🎯 **Presets:** Home, Away, Sleep, Custom, Auto, and Weekly Schedule.
 - 💧 **Environmental Metrics:** Ambient temperature, relative humidity percentage, and live flame ignition status.
-- 📦 **Automated Frontend Card Serving:** The integration automatically serves the card at `/cosa_thermostat/cosa-thermostat-card.js` with zero manual file copying required.
+
+---
+
+## 📋 Prerequisites
+
+To control your Cosa thermostat in Home Assistant, install the Cosa integration:
+* [SmartCosa Home Assistant Integration (aykutvr/smartcosa-home-assistant-integration)](https://github.com/aykutvr/smartcosa-home-assistant-integration)
+
+Once installed and configured, you will have the `climate.cosa_thermostat` entity (and `climate.cosa_thermostat_ac` if AC is enabled).
 
 ---
 
 ## 🚀 Installation
 
 ### Method 1: HACS (Recommended)
-1. In Home Assistant, open **HACS** > **Integrations**.
-2. Click the three dots in the top right corner > **Custom repositories**.
-3. Add the URL of this repository and select **Integration** as the category.
-4. Search for **Cosa Smart Thermostat** and click **Download**.
-5. Restart Home Assistant.
+1. Open **HACS** in your Home Assistant sidebar.
+2. Go to **Frontend**.
+3. Search for **Cosa Thermostat Liquid Glass Card** (or add this repository URL as a Custom Repository with type **Dashboard / Lovelace / Plugin**).
+4. Click **Download**.
+5. Reload your dashboard when prompted.
 
 ### Method 2: Manual Installation
-1. Copy the `custom_components/cosa_thermostat` folder to your Home Assistant's `config/custom_components/` directory.
-2. Copy `www/cosa-thermostat-card.js` to your `config/www/` directory.
-3. Restart Home Assistant.
-
----
-
-## ⚙️ Configuration
-
-1. Go to Home Assistant **Settings** > **Devices & Services**.
-2. Click **Add Integration** and search for **Cosa Smart Thermostat**.
-3. Enter your Cosa mobile app **Email** and **Password**.
-4. Select your endpoint/device.
+1. Download `cosa-thermostat-card.js` from the [Latest Release](https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/releases).
+2. Copy `cosa-thermostat-card.js` to your Home Assistant `<config>/www/` directory.
+3. In Home Assistant, navigate to **Settings** > **Dashboards** > click the three dots in the top right > **Resources**.
+4. Click **Add Resource**:
+   - **URL:** `/local/cosa-thermostat-card.js`
+   - **Resource Type:** `JavaScript Module`
+5. Refresh your browser.
 
 ---
 
@@ -138,15 +143,13 @@ npm run dev
 npm run build
 ```
 
-The build command outputs the minified bundle to `dist/` and automatically synchronizes:
-- `cosa-thermostat-card.js` (root)
-- `www/cosa-thermostat-card.js`
-- `custom_components/cosa_thermostat/frontend/cosa-thermostat-card.js`
+The build command outputs the minified bundle to `dist/` and automatically synchronizes `cosa-thermostat-card.js` (root) and `www/cosa-thermostat-card.js`.
 
 ---
 
-## ⚖️ License
+## ⚖️ License & Attribution
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+- Licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+- Special thanks to Aykut Vurmaz ([aykutvr](https://github.com/aykutvr)) for the original Home Assistant Cosa integration.
 
-*Disclaimer: This integration is an independent community project and is not officially associated with or endorsed by Nuvia A.Ş. (Cosa).*
+*Disclaimer: This Lovelace card is an independent community project and is not officially associated with or endorsed by Nuvia A.Ş. (Cosa).*

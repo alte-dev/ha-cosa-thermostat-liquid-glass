@@ -5,7 +5,6 @@ const srcFile = path.resolve('dist/cosa-thermostat-card.js');
 const targets = [
   path.resolve('cosa-thermostat-card.js'),
   path.resolve('www/cosa-thermostat-card.js'),
-  path.resolve('custom_components/cosa_thermostat/frontend/cosa-thermostat-card.js'),
 ];
 
 if (fs.existsSync(srcFile)) {

@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/releases"><img src="https://img.shields.io/github/v/release/alte-dev/ha-cosa-thermostat-liquid-glass?style=for-the-badge&color=007ec6" alt="Release"></a>
-  <a href="https://github.com/hacs/default"><img src="https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge" alt="HACS"></a>
+  <a href="https://github.com/hacs/default"><img src="https://img.shields.io/badge/HACS-Plugin-41BDF5.svg?style=for-the-badge" alt="HACS"></a>
   <a href="https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass"><img src="https://img.shields.io/badge/UI-Liquid_Glass-ff2a6d.svg?style=for-the-badge" alt="UI"></a>
   <a href="https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/blob/main/LICENSE"><img src="https://img.shields.io/github/license/alte-dev/ha-cosa-thermostat-liquid-glass?style=for-the-badge" alt="License"></a>
 </p>
@@ -16,7 +16,9 @@
   <a href="README.tr.md"><strong>Türkçe</strong></a>
 </p>
 
-Home Assistant için tamamen sıfırdan modernize edilmiş, hem **Kombi (Isıtma)** hem de **Klima (Soğutma/IR)** desteğine sahip gelişmiş **Cosa Akıllı Termostat** entegrasyonu ve **Liquid Glass** Lovelace kartı. **TypeScript**, **Lit** ve **Vite** ile geliştirilmiştir.
+Home Assistant için fütüristik, hem **Kombi (Isıtma)** hem de **Klima (Soğutma/IR)** desteğine sahip modern **Liquid Glass Lovelace Kartı**. **TypeScript**, **Lit** ve **Vite** ile geliştirilmiştir.
+
+Resmi/topluluk [Aykut Vurmaz Cosa Entegrasyonu](https://github.com/aykutvr/smartcosa-home-assistant-integration) veya standart herhangi bir Home Assistant `climate` varlığıyla tam uyumludur.
 
 ---
 
@@ -52,33 +54,34 @@ Liquid Glass kartı, Home Assistant panonuzun temasını otomatik olarak algıla
 - ⚡ **Anlık İyimser Yanıt (Optimistic UI):** Bulut API yanıtını beklemeden kart anında tepki verir, gecikme hissi yaşatmaz.
 - 🎯 **Önayarlar (Presets):** Ev, Dışarı, Uyku, Kullanıcı, Otomatik ve Haftalık Program.
 - 💧 **Ortam Telemetrileri:** Anlık oda sıcaklığı, bağıl nem oranı ve kombi alev/yanma durumu.
-- 📦 **Otomatik Kart Servisi:** Entegrasyon kurulduğunda kart dosyası otomatik olarak `/cosa_thermostat/cosa-thermostat-card.js` adresinden sunulur.
+
+---
+
+## 📋 Gereksinimler
+
+Cosa termostatınızı Home Assistant üzerinden kontrol edebilmek için öncelikle Cosa entegrasyonunun kurulu olması gerekir:
+* [SmartCosa Home Assistant Entegrasyonu (aykutvr/smartcosa-home-assistant-integration)](https://github.com/aykutvr/smartcosa-home-assistant-integration)
+
+Entegrasyon kurulduğunda `climate.cosa_thermostat` (ve klima varsa `climate.cosa_thermostat_ac`) varlığı hazır olacaktır.
 
 ---
 
 ## 🚀 Kurulum
 
 ### Yöntem 1: HACS (Önerilen)
-1. Home Assistant'ta **HACS** > **Entegrasyonlar** menüsüne gidin.
-2. Sağ üstteki üç noktaya tıklayıp **Özel Depolar (Custom repositories)** seçeneğini açın.
-3. Depo URL adresinizi girin ve kategori olarak **Integration** seçin.
-4. "Cosa Smart Thermostat"ı bulup **İndir** butonuna tıklayın.
-5. Home Assistant'ı yeniden başlatın.
+1. Home Assistant'ta **HACS** > **Frontend (Arayüz)** menüsüne gidin.
+2. Sağ üstteki üç noktaya veya **Keşfet & İndir** butonuna tıklayın.
+3. **Cosa Thermostat Liquid Glass Card** araması yapın (veya bu repo URL'sini Özel Depo olarak **Lovelace / Dashboard** kategorisinde ekleyin).
+4. **İndir** butonuna tıklayın ve panoyu yenileyin.
 
 ### Yöntem 2: Manuel Kurulum
-1. `custom_components/cosa_thermostat` klasörünü Home Assistant kurulumunuzdaki `config/custom_components/` dizinine kopyalayın.
-2. `www/cosa-thermostat-card.js` dosyasını `config/www/` dizinine kopyalayın.
-3. Home Assistant'ı yeniden başlatın.
-
----
-
-## ⚙️ Yapılandırma
-
-1. Home Assistant'ta **Ayarlar** > **Cihazlar & Hizmetler** bölümüne gidin.
-2. Sağ alttaki **Entegrasyon Ekle** butonuna tıklayın.
-3. **Cosa Smart Thermostat** araması yapın.
-4. Cosa mobil uygulamasında kayıtlı **E-posta** ve **Şifrenizi** girin.
-5. Listelenen Cosa cihazınızı seçip onaylayın.
+1. [En Son Sürümden (Releases)](https://github.com/alte-dev/ha-cosa-thermostat-liquid-glass/releases) `cosa-thermostat-card.js` dosyasını indirin.
+2. Dosyayı Home Assistant kurulumunuzdaki `<config>/www/` dizinine kopyalayın.
+3. Home Assistant'ta **Ayarlar** > **Panolar** > sağ üstteki üç nokta > **Kaynaklar** bölümüne gidin.
+4. **Kaynak Ekle** butonuna tıklayın:
+   - **URL:** `/local/cosa-thermostat-card.js`
+   - **Kaynak Türü:** `JavaScript Modülü`
+5. Tarayıcınızı yenileyin.
 
 ---
 
@@ -112,7 +115,7 @@ show_ambient_glow: true
 | :--- | :--- | :--- | :--- |
 | `type` | `string` | **Zorunlu** | `custom:cosa-thermostat-card` |
 | `entity` | `string` | **Zorunlu** | Kombi iklim varlığı (`climate.cosa_thermostat`) |
-| `name` | `string` | `Cosa Kombi Termostatı` | Kart üzerinde görünecek özel başlık |
+| `name` | `string` | `Cosa Termostat` | Kart üzerinde görünecek özel başlık |
 | `show_ac` | `boolean` | `false` | **Klima seçeneği.** Sadece kombiniz varsa `false` bırakın (soğutma arayüzü gizlenir). |
 | `ac_entity` | `string` | `null` | Opsiyonel Klima iklim varlığı (`climate.cosa_thermostat_ac`) |
 | `temp_step` | `number` | `0.5` | Kadran ve butonlar için sıcaklık adımı (`0.1` veya `0.5`) |
@@ -134,16 +137,17 @@ npm install
 # Geliştirme sunucusu (Vite HMR):
 npm run dev
 
-# Üretim için derleme (TypeScript + Vite + Otomatik Dağıtım):
+# Üretim için derleme (TypeScript + Vite):
 npm run build
 ```
 
-`npm run build` komutu `dist/` klasörüne derler ve dosyaları otomatik olarak `cosa-thermostat-card.js`, `www/` ve `custom_components/cosa_thermostat/frontend/` dizinlerine kopyalar.
+`npm run build` komutu `dist/` klasörüne derler ve dosyaları otomatik olarak `cosa-thermostat-card.js` ve `www/cosa-thermostat-card.js` dizinlerine senkronize eder.
 
 ---
 
-## ⚖️ Lisans
+## ⚖️ Lisans & Atıf
 
-Bu proje **MIT Lisansı** ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına göz atabilirsiniz.
+- Bu proje **MIT Lisansı** ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına göz atabilirsiniz.
+- Temel Home Assistant Cosa entegrasyonu altyapısı için Aykut Vurmaz'a ([aykutvr](https://github.com/aykutvr)) teşekkür ederiz.
 
-*Not: Bu entegrasyon ve arayüz bağımsız bir topluluk projesidir. Cosa markası Nuvia A.Ş.'ye aittir.*
+*Not: Bu Lovelace kartı bağımsız bir topluluk projesidir. Cosa markası Nuvia A.Ş.'ye aittir.*
